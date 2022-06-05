@@ -4,7 +4,5 @@ output "rg_name" {
 }
 
 output "rg_name" {
-  value = azurerm_resource_group.mainvnetrg.id
 
-}
 
