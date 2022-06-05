@@ -19,22 +19,16 @@ stages:
           inputs:
             terraformVersion: 'latest'
         - task: TerraformCLI@0
-          displayName: Terraform_init
           inputs:
             command: 'init'
             backendType: 'azurerm'
             backendServiceArm: 'azurdevopsonclick'
             ensureBackend: true
-            backendAzureRmResourceGroupName: 'rg-oneclick'
+            backendAzureRmResourceGroupName: 'rg-onclick'
             backendAzureRmResourceGroupLocation: 'westeurope'
-            backendAzureRmStorageAccountName: 'stazureonclick'
-            backendAzureRmStorageAccountSku: 'Standard_LRS'
+            backendAzureRmStorageAccountName: 'stonclick'
             backendAzureRmContainerName: 'tfstate'
-            backendAzureRmKey: 'oneclick.tf'
+            backendAzureRmKey: 'oneclick.tfstate'
             allowTelemetryCollection: false
-        - task: TerraformCLI@0
-          displayName: Terraform_validate
-          inputs:
-            command: 'validate'
-            environmentServiceName: 'azurdevopsonclick'
-            allowTelemetryCollection: false
+
+        
