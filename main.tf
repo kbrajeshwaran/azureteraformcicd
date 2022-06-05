@@ -1,6 +1,6 @@
 
 module "network" {
-source = "./network"
+  source = "./network"
 
 
 }
