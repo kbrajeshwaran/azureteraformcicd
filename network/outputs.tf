@@ -3,6 +3,6 @@ output "rg_name" {
 
 }
 
-output "rg_name" {
+
 
 
