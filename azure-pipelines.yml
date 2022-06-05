@@ -1,0 +1,40 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pr: none
+pool:
+  vmImage: ubuntu-latest
+stages:
+  - stage: terrafrom_validate
+    displayName: Terraform_Validate and init
+    jobs:
+      - job:
+        steps: 
+        - task: TerraformInstaller@0
+          inputs:
+            terraformVersion: '1.00'
+        - task: TerraformCLI@0
+          displayName: Terraform_init
+          inputs:
+            command: 'init'
+            backendType: 'azurerm'
+            backendServiceArm: 'azurdevopsonclick'
+            ensureBackend: true
+            backendAzureRmResourceGroupName: 'rg-oneclick'
+            backendAzureRmResourceGroupLocation: 'westeurope'
+            backendAzureRmStorageAccountName: 'stazureonclick'
+            backendAzureRmStorageAccountSku: 'Standard_LRS'
+            backendAzureRmContainerName: 'tfstate'
+            backendAzureRmKey: 'oneclick.tf'
+            allowTelemetryCollection: false
+        - task: TerraformCLI@0
+          displayName: Terraform_validate
+          inputs:
+            command: 'validate'
+            environmentServiceName: 'azurdevopsonclick'
+            allowTelemetryCollection: false
